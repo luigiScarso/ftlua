@@ -21,4 +21,4 @@ lua -e 'require("freetype")'
 The bash script 
 build-freetype.sh
 
-build all starting from freetype.i  .
+build all starting from freetype.i .
