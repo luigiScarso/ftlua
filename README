@@ -1,0 +1,24 @@
+Quinck and dirty swig-based lua binding for freetype on a Linux box.
+You need freetype-2.4.9
+(even if on Friday 16 June there is a new version of freetype)
+development files, Lua development files and swig 2.0.6 or later.
+
+You can give it  try with
+
+DIR=/usr
+
+gcc -Wall -fPIC -I. -c freetype_wrap.c -I$DIR/include  -I$DIR/include/freetype2 -I/usr/include/lua5.1 -o freetype_wrap.o
+
+rm -vf freetype.so
+
+gcc -Wall -shared -I. -I$DIR/include -I$DIR/include/freetype2 -I/usr/include/lua5.1 -L. -L$DIR/lib  freetype_wrap.o  -lfreetype -lm  -lz -lbz2  -o freetype.so
+
+strip --strip-unneeded freetype.so
+
+lua -e 'require("freetype")'
+
+
+The bash script 
+build-freetype.sh
+
+build all starting from freetype.i  .
